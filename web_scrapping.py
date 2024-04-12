@@ -24,7 +24,3 @@ def get_content_from(url):
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
-
-url = "https://en.wikipedia.org/wiki/Natural_language_processing"
-text = get_content_from(url)
-print(text)
