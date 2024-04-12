@@ -6,12 +6,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    if request.method == "POST":
-        url = request.form.get("url")
     return render_template("index.html")
 
 @app.route('/', methods=['POST'])
 def summarize():
+    url = request.form.get("url")
     content = get_content_from(url)
     summary = summarize_text(content)
     print("Summary:", summary)  # Debugging print statement
