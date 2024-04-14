@@ -1,21 +1,25 @@
 from deep_translator import GoogleTranslator
-import nltk
-from nltk import wordpunct_tokenize
-from nltk.corpus import stopwords
 
-# Download stopwords if not already downloaded
-nltk.download('stopwords')
+def translate_text(text: str, target_lang: str = 'en') -> str:
+    """
+    Translates text to the target language using Google Translate.
 
-def detect_language(text):
-    words = wordpunct_tokenize(text.lower())
-    # Filter out stopwords
-    stop_words = set(stopwords.words('english'))  # Assuming English stopwords
-    filtered_words = [word for word in words if word.lower() not in stop_words]
-    # Calculate frequency distribution of words
-    language_guess = nltk.FreqDist(filtered_words).max()
-    return language_guess
+    Args:
+        text (str): The text to translate.
+        target_lang (str, optional): The target language. Defaults to 'en'.
 
-def translate_text(text, target_lang='en'):
-    source_lang = detect_language(text)
-    translated_text = GoogleTranslator(source=source_lang, target=target_lang).translate(text)
+    Returns:
+        str: The translated text.
+    """
+    # Split the text into chunks of 5000 characters
+    chunk_size = 5000
+    chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
+
+    translated_chunks = []
+    for chunk in chunks:
+        # Allow Google Translator to auto-detect source language
+        translated_chunk = GoogleTranslator(source='auto', target=target_lang).translate(chunk)
+        translated_chunks.append(translated_chunk)
+
+    translated_text = ''.join(translated_chunks)
     return translated_text

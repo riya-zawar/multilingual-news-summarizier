@@ -25,8 +25,3 @@ def summarize_news_article(url):
     summarized_text = summarize_text(article_text)
     
     return summarized_text
-
-# Example
-url = "https://www.livemint.com/news/india-warns-citizens-against-travel-to-iran-and-israel-11712928968175.html"
-summarized_article = summarize_news_article(url)
-print(summarized_article)
