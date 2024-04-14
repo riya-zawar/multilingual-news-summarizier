@@ -20,6 +20,5 @@ def summarize():
         return "Failed to summarize the text."
 
 
-
 if __name__ == '__main__':
     app.run(debug=True)

@@ -3,7 +3,6 @@ import nltk
 from nltk import wordpunct_tokenize
 from nltk.corpus import stopwords
 
-# Download stopwords if not already downloaded
 nltk.download('stopwords')
 
 def detect_language(text):
