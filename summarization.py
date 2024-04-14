@@ -15,7 +15,7 @@ def summarize_text(text, summary_length=30, language='english'):
 
     summary = summarizer(text, summary_length)
 
-    return summary
+    return str(summary)
 
 def summarize_news_article(url):
     # extracted text
