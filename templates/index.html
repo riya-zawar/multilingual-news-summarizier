@@ -4,68 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Summarization</title>
-    <style>
-        /* Style to adjust sizes */
-        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: left;
+    <link rel="stylesheet" href="static/styles.css">
+    <script>
+        function showUrlInput() {
+            document.getElementById('url').style.display = 'block';
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('input_type').value = 'url'; // Update input type to "url"
+            document.querySelector('label[for="url"]').style.display = 'block';
+            document.querySelector('label[for="text"]').style.display = 'none';
+            document.querySelector('form').style.height = '50%'; // Adjust the height of the form
         }
-        input[type="text"],
-        select {
-            width: 50%; 
-            margin-bottom: 10px;
-            height: 1.5rem;
+    
+        function showTextInput() {
+            document.getElementById('url').style.display = 'none';
+            document.getElementById('text').style.display = 'block';
+            document.getElementById('text').style.height = '12rem'; // Adjust the height as needed
+            document.getElementById('input_type').value = 'text'; // Update input type to "text"
+            document.querySelector('label[for="url"]').style.display = 'none';
+            document.querySelector('label[for="text"]').style.display = 'block';
+            document.querySelector('form').style.height = '73%'; // Adjust the height of the form
         }
-        input[type="submit"] {
-            width: 10rem; 
-            height: 2rem;
-            font-size: medium;
-            background-color: rgb(224, 224, 224); 
-            color: black; 
-            cursor: pointer; 
-        }
-        #language option {
-            font-size: 16px;
-        }
-        select option {
-            font-size: 16px; 
-        }
-        input[type="submit"]:hover {
-            background-color: black; 
-            color: white;
-        }
-        body {
-            font-family: "Noto Sans", sans-serif;
-        }
-        label {
-            display: inline-block;
-            width: 50px; 
-            text-align: left; 
-            margin-right: 10px;
-        }
-    </style>
+    </script>    
 </head>
 <body>
-    <h1>NEWS POLYGLOT</h1>
-    <form method="POST" action="/">
-        <label for="url">URL:</label>
-        <input type="text" name="url" id="url">
-        <select name="language" id="language" style="width: 320px; height: 2rem; font-size: medium;"> <!-- Adjust inline style -->
-            <option value="en">English</option>
-            <option value="fr">French</option>
-            <option value="es">Spanish</option>
-            <option value="hi">Hindi</option>
-            <option value="zh">Chinese</option>
-            <option value="ja">Japanese</option>
-            <option value="it">Italian</option>
-            <option value="mr">Marathi</option>
-            <option value="ar">Arabic</option>
-            <option value="de">German</option>
-            <option value="ru">Russian</option>
-        </select>
-        <input type="submit" name="submit" id="submit" value="Submit">
-    </form>
+    <div id="overlay">
+        <form method="POST" action="/">
+            <input type="hidden" name="input_type" id="input_type" value="url"> <!-- Hidden input field for input type -->
+            <h1>NEWS POLYGLOT</h1>
+            <h4>Multi Lingual News Summarizer</h4>
+            <label for="url">URL:</label>
+            <input type="text" name="url" id="url" placeholder="Enter URL..." style="display: block;">
+            <label for="text" style="display: none;">Text:</label>
+            <textarea name="text" id="text" placeholder="Enter text..." style="display: none;"></textarea>
+            <div id="button-div">
+                <button type="button" id="ip_button" onclick="showUrlInput()">URL Input</button>
+                <button type="button" id="ip_button" onclick="showTextInput()">Text Input</button>
+            </div>
+            <label for="language">Select language:</label>
+            <select name="language" id="language">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="hi">Hindi</option>
+                <option value="zh">Chinese</option>
+                <option value="ja">Japanese</option>
+                <option value="it">Italian</option>
+                <option value="mr">Marathi</option>
+                <option value="ar">Arabic</option>
+                <option value="de">German</option>
+                <option value="ru">Russian</option>
+            </select>
+            <input type="submit" name="submit" id="submit" value="Submit">
+        </form>        
+    </div>
 </body>
 </html>

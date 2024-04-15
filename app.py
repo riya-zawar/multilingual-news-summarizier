@@ -11,16 +11,25 @@ def index():
 
 @app.route('/', methods=['POST'])
 def summarize():
-    url = request.form.get("url")
+    input_type = request.form.get("input_type")
     target_language = request.form.get("language")
-    content = get_content_from(url)
-    summary = summarize_text(content)
-    print("Summary:", summary)  # Debugging print statement
-    if summary:  # Check if summary is not empty
-        translated_summary = translate_text(summary, target_lang=target_language)
-        return render_template('result.html', summary=translated_summary)
+    content=None
+    if input_type == "url":
+        url = request.form.get("url")
+        content = get_content_from(url)
+    elif input_type == "text":
+        content = request.form.get("text")
+    
+    if content is not None:  # Check if content is assigned a value
+        summary = summarize_text(content)
+        print("Summary:", summary)  # Debugging print statement
+        if summary:  # Check if summary is not empty
+            translated_summary = translate_text(summary, target_lang=target_language)
+            return render_template('result.html', summary=translated_summary)
+        else:
+            return "Failed to summarize the text."
     else:
-        return "Failed to summarize the text."
+        return "Invalid input type."
 
 
 if __name__ == '__main__':
