@@ -4,7 +4,7 @@ import nltk
 
 from nltk.corpus import stopwords
 
-def summarize_text(text, summary_length=30, language='english'):
+def summarize_text(text, summary_length=50, language='english'):
     summary=""
     nltk.download("punkt", quiet=True)
     nltk.download("stopwords", quiet=True)

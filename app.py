@@ -3,6 +3,8 @@ from newspaper_extraction import extract_article_text
 from translator import translate_text
 from summarization import summarize_text
 
+summary_length=30
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -10,7 +12,7 @@ def index():
     return render_template("index.html")
 
 @app.route('/', methods=['POST'])
-def summarize():
+def summarize(summary_length=30):
     input_type = request.form.get("input_type")
     target_language = request.form.get("language")
     content=None
@@ -21,7 +23,7 @@ def summarize():
         content = request.form.get("text")
     
     if content is not None:  # Check if content is assigned a value
-        summary = summarize_text(content)
+        summary = summarize_text(content,summary_length=summary_length)
         print("Summary:", summary)  # Debugging print statement
         if summary:  # Check if summary is not empty
             translated_summary = translate_text(summary, target_lang=target_language)
