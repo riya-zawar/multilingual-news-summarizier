@@ -1,2 +1,2 @@
 # ML-mini-project
- Multi lingual news summarization
+Multi lingual news summarization
