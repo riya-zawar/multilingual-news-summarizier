@@ -33,6 +33,5 @@ def summarize(summary_length=30):
     else:
         return "Invalid input type."
 
-
 if __name__ == '__main__':
     app.run(debug=True)
