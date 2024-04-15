@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
-from web_scrapping import get_content_from
-from summarization import summarize_text
+from newspaper_extraction import extract_article_text
 from translator import translate_text
+from summarization import summarize_text
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ def summarize():
     content=None
     if input_type == "url":
         url = request.form.get("url")
-        content = get_content_from(url)
+        content = extract_article_text(url)
     elif input_type == "text":
         content = request.form.get("text")
     
